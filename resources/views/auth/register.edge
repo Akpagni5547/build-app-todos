@@ -1,0 +1,63 @@
+@layout('layouts/app')
+
+@section('content')
+    <div class="columns">
+        <div class="column is-4 is-offset-4">
+            <div class="box">
+                <h2 class="title has-text-centered">Register</h2>
+
+                <form action="/register" method="POST">
+                    {{ csrfField() }}
+                    <div class="field">
+                        <label for="name" class="label">Name</label>
+                        <div class="control">
+                            <input class="input {{flashMessages.get('errors.name') ? 'is-danger' : ''}}" type="text" name="name" placeholder="Enter a name" value="{{ flashMessages.get('name') || '' }}">
+                        </div>
+                        @if(flashMessages.get('errors.name'))
+                            <p class="help is-danger">
+                                {{ flashMessages.get('errors.name') }}
+                            </p>
+                        @endif
+                    </div>
+                    <div class="field">
+                        <label for="email" class="label">Email</label>
+                        <div class="control">
+                            <input class="input {{flashMessages.get('errors.email') ? 'is-danger' : ''}}" type="email" name="email" placeholder="Enter a email" value="{{ flashMessages.get('email') || '' }}">
+                        </div>
+                        @if(flashMessages.get('errors.email'))
+                            <p class="help is-danger">
+                                {{ flashMessages.get('errors.email') }}
+                            </p>
+                        @endif
+                    </div>
+                    <div class="field">
+                        <label for="password" class="label">Password</label>
+                        <div class="control">
+                            <input class="input {{flashMessages.get('errors.password') ? 'is-danger' : ''}}" type="password" name="password" placeholder="Enter a password">
+                        </div>
+                        @if(flashMessages.get('errors.password'))
+                            <p class="help is-danger">
+                                {{ flashMessages.get('errors.password') }}
+                            </p>
+                        @endif
+                    </div>
+                    <div class="field">
+                        <label for="password_confirmation" class="label">Confirm password</label>
+                        <div class="control">
+                            <input class="input {{flashMessages.get('errors.password_confirmation') ? 'is-danger' : ''}}" type="password" name="password_confirmation" placeholder="confirm password">
+                        </div>
+                        @if(flashMessages.get('errors.password_confirmation'))
+                            <p class="help is-danger">
+                                {{ flashMessages.get('errors.password_confirmation') }}
+                            </p>
+                        @endif
+                    </div>
+
+                        <div class="control">
+                            <button type="submit" class="button is-link is-fullwidth">Register</button>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
